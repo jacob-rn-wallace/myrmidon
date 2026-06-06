@@ -1,73 +1,108 @@
-# CLAUDE.md — modus-operandi
+# CLAUDE.md — Myrmidon
 
-modus-operandi is a template repository for open source preservation,
-restoration, and reverse engineering projects. It is not a product project
-itself — it is the common foundation that product projects are derived from.
-
----
-
-## How to work on this repository
-
-Changes here are changes to the template, not to any derived project. Before
-editing any file, ask: does this change reflect a convention that should apply
-to all derived projects, or is it specific to one? If the latter, it belongs
-in that project's repository, not here.
-
-When updating the template, derived projects are not automatically updated —
-changes are applied to new projects going forward and backported to existing
-ones manually.
+Myrmidon is an open source preservation, restoration, and reverse engineering
+project for the iRobot PackBot 510 unmanned ground vehicle. The goal is to
+fully document the platform so that hobbyists can repair, modify, and build
+new parts for existing units — and ultimately to make the robot operable
+without dependence on original iRobot hardware or military-spec consumables.
 
 ---
 
-## Files and what they are
+## Project status
 
-**`README.template.md`** — the canonical project README. This is the file
-that gets renamed to `README.md` in each derived project. Every section,
-heading, and placeholder is intentional. Do not reorder sections or rename
-headings without a clear reason; consistency across projects is the goal.
+The project is in its earliest stage. The robot has been fully disassembled
+and reassembled with outside guidance, so the physical structure is understood
+at a hands-on level. No electrical, firmware, or protocol work has been done
+yet.
 
-**`CONTRIBUTING.template.md`** — contribution guidelines template. Section order:
-code of conduct → current needs → per-type contribution workflow → file naming
-and directory conventions → measurements guidance → license agreement.
+**What exists:**
+- One bare PackBot 510 chassis (no payloads, no accessories, no tracks —
+  wheels only)
+- Removable antennae
+- One dissected BB-2590 military battery, disassembled to understand internal
+  structure
 
-**`.github/ISSUE_TEMPLATE/contributing-finding.md`** — issue template for
-physical documentation contributions (measurements, photography, sourcing,
-protocol capture).
+**What does not exist yet:**
+- Electrical diagrams or measurements
+- Any firmware or software
+- Protocol documentation
+- Replacement or replica parts
 
-**`LICENSE-DOCUMENTATION`**, **`LICENSE-FIRMWARE`**, **`LICENSE-HARDWARE`** —
-full license texts. Do not edit these. CC BY 4.0, GPL-3.0, and CERN-OHL-S-2.0
-respectively.
+---
 
-**`docs/`**, **`hardware/`**, **`software/`**, **`parts/`**, **`references/`**
-— default directory structure. Each contains a `.gitkeep`. These are the
-starting point; derived projects rename and extend as needed.
+## Goals
+
+**Near-term:** Get the robot operational in any capacity. The most tractable
+path is probably to reuse the chassis and drive motors with different — more
+accessible — control electronics, bypassing the original internals entirely
+for now.
+
+**Medium-term:** Break the robot's dependence on the BB-2590 military battery.
+This includes understanding the battery interface, designing replica BB-2590
+units, and identifying or designing civilian power alternatives that are
+compatible with the PackBot's power system.
+
+**Long-term:** Complete reverse engineering of the original platform —
+electrical, firmware, and protocols — so the robot can be operated and
+understood on its own terms.
+
+---
+
+## Battery work
+
+Battery documentation and replica design are part of this project, not a
+separate one. The BB-2590 is the PackBot's primary power source, and making
+the robot usable requires either replicating it or replacing it. Both
+directions are in scope.
+
+---
+
+## Key external reference
+
+A hobbyist (@Alpha10six on Twitter) has independently refurbished several
+PackBot models and provided the disassembly guidance that got this project
+started. His work is the only known public hands-on documentation of this
+platform. Reach out to him before duplicating effort or making assumptions
+about undocumented systems — he may have already solved problems this project
+will encounter.
+
+---
+
+## Information environment
+
+There is almost no publicly available technical information about the
+PackBot 510. This is expected given its intended user base. Assume that
+anything not documented in this repository is unknown until measured or
+traced directly. Do not fill gaps with plausible-sounding inferences.
+
+---
+
+## ITAR and export control
+
+**Open question — not yet resolved.**
+
+The PackBot 510 is a former controlled military item. Reverse engineering a
+unit you own is generally understood to be legal, but publishing detailed
+technical findings — particularly around communications interfaces, protocols,
+or cryptographic systems — may implicate ITAR or EAR depending on specifics.
+
+Do not make legal determinations here. Flag any findings that touch comms,
+crypto, or payload interfaces as potentially sensitive and treat them as
+requiring separate review before publication.
+
+---
+
+## Repository structure
+
+The default modus-operandi structure applies as a starting point. Expect it
+to evolve significantly as the project develops. Battery-related work lives
+under a `battery/` directory at the root level.
 
 ---
 
 ## Conventions
 
-**File naming:** lowercase with hyphens. Example: `main-pcb-top.jpg`, not
-`Main PCB Top.jpg` or `main_pcb_top.jpg`.
-
-**Directory naming:** lowercase, single word where possible.
-
-**Placeholders:** all template placeholders use `[BRACKETED UPPERCASE]` format.
-When searching for unfilled placeholders in a derived project, grep for `\[`.
-
-**License model:** CERN-OHL-S-2.0 for hardware, GPL-3.0 for firmware and
-software, CC BY 4.0 for documentation. This is fixed across all projects in
-the family — do not substitute.
-
-**README tone:** direct and technical. The top-level README intentionally
-avoids implementation specifics; those belong in their respective directories.
-
----
-
-## Derived projects
-
-| Project | Subject | Repository |
-|---|---|---|
-| Millennium | Logitech MX1000 | jacob-rn-wallace/millennium |
-| Michiyuki | Tomy i-SOBOT | jacob-rn-wallace/michiyuki |
-
-Update this table when a new project is started from the template.
+Inherited from modus-operandi. File names: lowercase with hyphens. Directory
+names: lowercase, single word where possible. Placeholders: `[BRACKETED
+UPPERCASE]`. License model: CERN-OHL-S-2.0 (hardware), GPL-3.0 (firmware and
+software), CC BY 4.0 (documentation).
